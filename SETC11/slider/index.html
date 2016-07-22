@@ -1,0 +1,96 @@
+﻿<html>
+ <head><title>考试</title>
+  <style type="text/css">
+  	#Scroller{
+		width:700px;
+		height:290px;
+		position:relative;
+		overflow:hidden;
+	}
+	#Photos{
+		width:4900px;
+		height:290px;
+		position:relative;	
+		overflow:hidden;	
+	}
+	#Photos img{
+		margin:0;		
+		width:700px;
+		height:290px;		
+		position:relative;
+	}
+    #Pages a{
+      float:left;
+      margin-right:20px;
+      display:block;
+      width:20px;
+      height:20px;
+      text-align:center;
+      padding:5px 10px;
+      border:1px solid red;
+      background-color:#ccc;
+    }
+    #Pages a:hover{
+      background-color:#649;
+    }
+  </style>
+  <script type="text/javascript" src="../js/jquery-1.6.1.min.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function() {
+          alert("H");
+      });
+  </script>
+ </head>
+ <body>
+  <div id="Scroller">
+   <div id="Photos">
+    <img src="1.jpg" width="700" /><img src="2.jpg" width="700" /><img src="3.jpg" width="700" /><img src="4.jpg" width="700" /><img src="5.jpg" width="700" /><img src="6.jpg" width="700" /><img src="7.jpg" width="700" />
+   </div>
+  </div>
+  <br/>  
+  <div id="Pages">
+     <a href="#" onClick="fn(0)">1</a>
+     <a href="#" onClick="fn(1)">2</a>
+     <a href="#" onClick="fn(2)">3</a>
+     <a href="#" onClick="fn(3)">4</a>
+     <a href="#" onClick="fn(4)">5</a>
+     <a href="#" onClick="fn(5)">6</a>
+     <a href="#" onClick="fn(6)">7</a>
+  </div>
+  <script type="text/javascript">
+  	var arr = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg"];
+	var current = 0;
+	var speed = 10;
+	var direction = -700;
+	var photos = document.getElementById("Photos");	
+	photos.style.left = "0px";
+	function fn(param){		
+		if(current < param){
+			var c = setInterval(function(){
+				var a = parseInt(photos.style.left);			
+				if( a <= -700*param ){
+					clearInterval(c);
+					current = param;				
+				}else{
+					photos.style.left = (a - 10 ) + "px";				
+				}
+		 	},10);
+		}
+		else if( current > param ) {
+			var d = setInterval(function(){
+				var b = parseInt(photos.style.left);			
+				if( b >= -700*(current-param) ){
+					clearInterval(c);
+					current = param;				
+				}else{
+					photos.style.left = (b +10 ) + "px";				
+				}
+		 	},10);
+		}
+	
+		
+		//alert(document.getElementById(arr[param]).style.left );
+	}
+  </script>
+ </body>
+</html>
